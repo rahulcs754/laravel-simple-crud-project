@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\hobby;
+
 use Illuminate\Http\Request;
 
 class HobbyController extends Controller
@@ -15,7 +16,7 @@ class HobbyController extends Controller
     public function index()
     {
         //
-        $hobby = Hobby::all();
+        $hobbies = Hobby::all();
         return view('hobby.index')->with([
             'hobbies' => $hobbies
             ]);          
@@ -30,6 +31,7 @@ class HobbyController extends Controller
     public function create()
     {
         //
+        return view('hobby.create');
     }
 
     /**
@@ -41,6 +43,12 @@ class HobbyController extends Controller
     public function store(Request $request)
     {
         //
+        $hobby = new Hobby([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+        $hobby->save();
+        return ($this->index());
     }
 
     /**
