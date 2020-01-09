@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('hobby', 'HobbyController');
+
+Route::get('/user/{user_id}/add-skill/{skill_id}/', 'TestController@testFunction');
