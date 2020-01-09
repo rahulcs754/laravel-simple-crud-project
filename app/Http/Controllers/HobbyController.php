@@ -60,6 +60,9 @@ class HobbyController extends Controller
     public function show(hobby $hobby)
     {
         //
+        return view('hobby.show', [
+            'hobby' => $hobby
+            ]);
     }
 
     /**
@@ -71,6 +74,10 @@ class HobbyController extends Controller
     public function edit(hobby $hobby)
     {
         //
+        return view('hobby.edit', [
+            'hobby' => $hobby
+        ]);
+
     }
 
     /**
@@ -83,6 +90,11 @@ class HobbyController extends Controller
     public function update(Request $request, hobby $hobby)
     {
         //
+        $hobby->update([
+            'title' => $request->title,
+            'description' => $request->description
+            ]);
+        return ($this->index()); // return to index page
     }
 
     /**
@@ -94,5 +106,7 @@ class HobbyController extends Controller
     public function destroy(hobby $hobby)
     {
         //
+        $hobby-> delete() ;
+        return ($this->index()); // Back to index page
     }
 }
